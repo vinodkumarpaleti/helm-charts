@@ -5,8 +5,8 @@ metadata:
   labels: # these labels belong to deployment
     app: nginx
 spec:
-  #replicas: {{ .Values.deployment.replicaCount }}
-  replicas: 2
+  #replicas: 2
+  replicas: {{ .Values.deployment.replicaCount }} #After using helm
   selector:
     matchLabels: # these labels should match with pod
       app: nginx
@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        #image: "nginx:{{ .Values.deployment.imageVersion }}"
-        image: nginx
+        #image: nginx
+        image: "nginx:{{ .Values.deployment.imageVersion }}"
         ports:
         - containerPort: 80
